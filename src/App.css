@@ -13,34 +13,28 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.container {
-  padding-left: 200px;
-}
-
 .guest-list {
   padding-left: 200px;
+}
+
+.guest-div {
+  border: 10 0 10 0px;
+  width: 200px;
+  height: 58px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 100x;
+  opacity: 0.9;
+  border-radius: 5px;
+  color: white;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.div1-style {
+  text-align: center;
+}
+
+.div1-style.h1 {
+  font-size: 1.5em;
 }

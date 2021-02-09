@@ -11,8 +11,15 @@ function App() {
 
   // Add guest to API localhost:5000
   console.log(userData);
+
+  async function fetchData() {
+    const response = await fetch(`${baseUrl}/`);
+    const data = await response.json();
+    setUserData(data);
+  }
+
   async function addGuest() {
-    const response = await fetch(`${baseUrl}/`, {
+    await fetch(`${baseUrl}/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -28,14 +35,8 @@ function App() {
     fetchData();
   }
 
-  async function fetchData() {
-    const response = await fetch(`${baseUrl}/`);
-    const data = await response.json();
-    setUserData(data);
-  }
-
   async function updateGuest(newAttend, id) {
-    const response = await fetch(`${baseUrl}/${id}`, {
+    await fetch(`${baseUrl}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +48,7 @@ function App() {
 
   async function deleteGuest(deleteAttend, id) {
     const response = await fetch(`${baseUrl}/${id}`, { method: 'DELETE' });
-    const deletedGuest = await response.json();
+    await response.json();
 
     fetchData();
   }
@@ -63,16 +64,16 @@ function App() {
   return (
     <>
       <section className="container">
-        <div>
+        <div className="div1-style">
           <h1> Guest List </h1>
-          <p>First Name:</p>
+          <p>First Name: </p>
           <input
             placeholder="First Name"
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <p>Last Name:</p>
+          <p>Last Name: </p>
           <input
             placeholder="Last Name"
             type="text"
@@ -82,8 +83,6 @@ function App() {
 
           <br />
           <br />
-          <br />
-          <br />
 
           <button onClick={addGuest}>Add Guest</button>
         </div>
@@ -91,49 +90,37 @@ function App() {
       <section className="guest-list">
         <br />
         <br />
-        <div>GuestList</div>
+        <h2>List of Attendees : </h2>
         {userData.map((singleGuest, index) => {
           return (
-            <div key={index}>
-              <b>First Name:</b>
+            <div key={index} className="guest-div">
+              <b> First Name: </b>
               {singleGuest.firstName}
               <br />
-              <b>Last Name:</b>
+              <b> Last Name: </b>
               {singleGuest.lastName}
               <br />
+
               <label>
                 Attending:
                 <input
                   type="checkbox"
-                  // Controlled Components #2: onChange of form element
-                  // (including using the `setDarkMode` setter function)
-                  onChange={(event) => {
-                    // console.log(event.target.value);
-                    // console.log(singleGuest.attending);
-
+                  onChange={() => {
                     updateGuest(!singleGuest.attending, singleGuest.id);
                   }}
-                  // Controlled Components #3: Set the value to the state variable
+                  le
                   checked={singleGuest.attending}
                 />{' '}
               </label>
               <label>
                 <button
-                  //type="checkbox"
-                  // Controlled Components #2: onChange of form element
-                  // (including using the `setDarkMode` setter function)
-                  onClick={(event) => {
-                    // console.log(event.target.value);
-                    // console.log(singleGuest.attending);
-
+                  onClick={() => {
                     deleteGuest(!singleGuest.deleteGuest, singleGuest.id);
                   }}
-                  // Controlled Components #3: Set the value to the state variable
                   clicked={singleGuest.deleteGuest}
                 >
                   Delete guest{' '}
                 </button>
-                {''}
               </label>
             </div>
           );
