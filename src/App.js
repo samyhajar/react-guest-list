@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export function handleChange(e) {
   console.log(e.target.value);
 }
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'https://react-guest-list-sh.herokuapp.com/';
 function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
