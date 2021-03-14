@@ -1,13 +1,11 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-export function handleChange(e) {
-  console.log(e.target.value);
-}
+
 const baseUrl = 'https://react-guest-list-sh.herokuapp.com';
 function App() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [userData, setUserData] = useState([]);
+  const [guestArr, setGuestArr] = useState([]);
 
   // Add guest to API localhost:5000
   console.log(userData);
@@ -15,7 +13,7 @@ function App() {
   async function fetchData() {
     const response = await fetch(`${baseUrl}/`);
     const data = await response.json();
-    setUserData(data);
+    setGuestArr(data);
   }
 
   async function addGuest() {
@@ -91,7 +89,7 @@ function App() {
         <br />
         <br />
         <h2>List of Attendees : </h2>
-        {userData.map((singleGuest, index) => {
+        {guestArr.map((singleGuest, index) => {
           return (
             <div key={index} className="guest-div">
               <b> First Name: </b>
